@@ -27,13 +27,12 @@ import UnauthPage from './pages/un-auth page/index'
 import React from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
-import Products from './components/Products';
 import Footer from './components/Footer';
 
 
 function App() {
   
-  const isAuthenticated = false;
+  const isAuthenticated = true; // Simulating authentication status
   const user ={
     name: "John Doe",
     role:"user"
@@ -48,8 +47,6 @@ function App() {
             <Navbar></Navbar>
       <main>
         <Hero />
-        <Products/>
-        <Products className="products-2"/>
       </main>
       <Footer></Footer>
       </div>}/>
