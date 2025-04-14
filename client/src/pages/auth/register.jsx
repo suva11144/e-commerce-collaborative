@@ -22,7 +22,7 @@ function AuthRegister(){
     }
 
     return(
-     <div className="mx-auto w-full mx-w-md space-y-6 hey">
+     <div className="mx-auto w-full mx-w-md space-y-6 hey shadow-[5px_0px_10px_rgba(255,255,255,0.25)] p-6 pt-15 pb-15 rounded-[10px]">
         <div className="text-center">
             <h1 className="text-3xl font-bold tracking-tight text-foreground">Create new Account</h1>
             <p className="mt-2">Already have an account
