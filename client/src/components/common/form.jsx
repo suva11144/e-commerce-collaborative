@@ -22,6 +22,7 @@ function CommonForm({ formControls, formData, setFormData, onSubmit, buttonText,
             value={value}
             onChange={(event) => setFormData({ ...formData, [getControlItem.name]: event.target.value })}
             required={getControlItem.required}
+            style={{ paddingLeft: '12px' }}
           />
         );
         break;
@@ -76,16 +77,17 @@ function CommonForm({ formControls, formData, setFormData, onSubmit, buttonText,
   }
 
   return (
-    <form onSubmit={onSubmit} >
-      <div className="flex flex-col gap-3 ">
+    <form onSubmit={onSubmit}  >
+      <div className="flex flex-col gap-3 justify-center items-center ">
         {formControls.map((controlItem) => (
           <div className="grid w-full gap-1.5 "  key={controlItem.name}>
             <Label className="mb-1">{controlItem.label}</Label>
             {renderInputsByComponentType(controlItem)}
           </div>
         ))}
+         <Button type="submit" className="mt-2 w-full bg-white text-black cursor-pointer ">{buttonText || 'submit'}</Button>
       </div>
-      <Button type="submit" className="mt-4 w-full bg-black text-white cursor-pointer ">{buttonText || 'submit'}</Button>
+     
     </form>
   );
 }

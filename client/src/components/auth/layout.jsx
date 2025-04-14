@@ -1,19 +1,17 @@
 
 import { Outlet } from "react-router-dom";
+import marvelImage from '../../assets/spidy.png';
 
 
 function AuthLayout() {
   return (
-    <div className="flex min-h-screen">
-      <div className="hidden lg:flex items-center justify-center w-1/2 bg-gray-100">
-        <div className="max-w-md space-y-6 text-center text-primary-forground">
-            <h1 className="text-4xl font-extrabold tracking-tight">Welcome to my website</h1>
-        </div>
+      <div className="flex min-h-screen  relative">
+        <div className="flex-1 black flex items-center justify-center ">
+          <Outlet/>
+  </div>
+
       </div>
-      <div className="flex flex-1 items-center justify-center bg-background px-4 py-12 sm:px-6 lg:px-8">
-        <Outlet/>
-      </div>
-    </div>
+    
   );
 }
 export default AuthLayout;

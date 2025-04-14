@@ -6,6 +6,11 @@ function CheckAuth({ isAuthenticated,user, children }) {
   
   const location = useLocation();
 
+
+  // if (!isAuthenticated && location.pathname.includes("/")){
+  //   return <Navigate to="/auth/login" />;
+  // }
+
   if (!isAuthenticated && !(location.pathname.includes('/login') || location.pathname.includes('/register'))) {
     return <Navigate to="/auth/login"/>;
   }

@@ -39,7 +39,7 @@ const products = [
 function Products({ className }) {
   return (
     <section id="shop" className={`products ${className || ''}`}>
-      <h1 className='text-center mt-5 text-3xl font-bold headline'>Stand Out With Deadpool Prints</h1>
+        <h1 className='text-center mt-5 text-3xl font-bold headline '>Stand Out With Deadpool Prints</h1>
       <div className="product-grid">
         {products.map((product, index) => (
           <ProductCard key={index} {...product} />

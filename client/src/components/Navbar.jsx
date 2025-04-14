@@ -2,8 +2,8 @@ import React from 'react';
 
 function Navbar() {
   return (
-    <nav className="navbar">
-      <div className="nav-content">
+    <nav className="fixed w-full h-[85px] top-0 z-[1000] bg-[rgba(3,3,3,0.8)] backdrop-blur border-b-2 border-[rgb(24,24,24)]">
+      <div className="max-w-[1450px] mx-auto flex justify-between items-center">
         <div className="logo">
           <div className="logo-cape"></div>
           <span className="logo-text">SuperTees</span>
