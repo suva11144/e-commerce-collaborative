@@ -18,7 +18,7 @@ import ShoppingViewLayout from './components/shopping-view/layout'
 import NotFound from './pages/not-found/index'
 import ShopingHome from './pages/shopping-view/home'
 import ShopingAccount from './pages/shopping-view/account'
-import ShopingListing from './pages/shopping-view/listing'
+import Collection from './pages/shopping-view/listing'
 import ShopingCheckout from './pages/shopping-view/checkout'
 import CheckAuth from './components/common/check-auth'
 import UnauthPage from './pages/un-auth page/index'
@@ -40,12 +40,11 @@ function App() {
 
   return (
     <>
-  
-
         <Routes>
+        
           <Route path='/' element={<div className='flex flex-col overflow-hidden'>
-            <Navbar></Navbar>
       <main>
+      <Navbar></Navbar>
         <Hero />
       </main>
       <Footer></Footer>
@@ -59,10 +58,10 @@ function App() {
             <Route path="orders" element={<AdminOrders/>}/>
             <Route path="features" element={<AdminFeatures/>}/>
             <Route path="products" element={<AdminProducts/>}/>
-          </Route>
+          </Route>  
           <Route path= "/shop" element={<CheckAuth isAuthenticated={isAuthenticated} user={user}><ShoppingViewLayout/></CheckAuth>}>
             <Route path='account' element={<ShopingAccount/>}/>
-            <Route path='listing' element={<ShopingListing/>}/>
+            <Route path='collection/:id' element={<Collection/>}/>
             <Route path='checkout' element={<ShopingCheckout/>}/>
             <Route path='home' element={<ShopingHome/>}/>
           </Route>

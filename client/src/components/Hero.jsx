@@ -14,7 +14,7 @@ function Hero() {
       <p className="hero-subtitle"> <br />"Not all Heros wear Capes...But you Can"</p>
       <button
       onClick={() => navigate('/shop/home')}
-      className="inline-block px-12 py-4 bg-gradient-to-r from-blue-900 to-[#7402ff] text-[var(--text)] no-underline rounded-full font-semibold uppercase tracking-wide transition-transform duration-300 ease-in-out hover:translate-y-[-5px] hover:bg-gradient-to-r hover:from-[#7402ff] hover:to-blue-900 hover:shadow-[5px_2px_5px_#6502b6]">Shop Now</button>
+      className="inline-block px-12 py-4 bg-gradient-to-r from-blue-900 to-[#7402ff] text-[var(--text)] no-underline rounded-full font-semibold uppercase tracking-wide transition-transform duration-300 ease-in-out hover:translate-y-[-5px] hover:bg-gradient-to-r hover:from-[#7402ff] hover:to-blue-900 hover:shadow-[5px_2px_5px_#6502b6]  cursor-pointer">Shop Now</button>
       </div>
     </section>
   );

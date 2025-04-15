@@ -1,5 +1,6 @@
 import { Outlet } from "react-router-dom";
 import { useState, useEffect } from "react";
+import Navbar  from "../Navbar";
 
 function ShoppingViewLayout() {
   const [starSeed, setStarSeed] = useState(Math.random());
@@ -13,6 +14,7 @@ function ShoppingViewLayout() {
   }, []);
 
   return (
+    <>
     <div className="flex min-h-screen relative bg-[#0a192f] ">
       {/* Enhanced animated stars background */}
       <div className="absolute inset-0">
@@ -36,6 +38,7 @@ function ShoppingViewLayout() {
         </div>
       </div>
     </div>
+    </>
   );
 }
 

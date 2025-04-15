@@ -3,13 +3,14 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Filter, ShoppingBag } from 'lucide-react';
+import spiderMan from '../../assets/spiderman.jpeg';
 
 // Categories data
 const categories = [
   {
     id: 'marvel',
     name: 'Marvel Collection',
-    image: 'https://images.unsplash.com/photo-1635805737707-575885ab0820?w=800',
+    image: spiderMan,
     subcategories: ['Avengers', 'Spider-Man', 'X-Men']
   },
   {
@@ -91,7 +92,7 @@ function ShopingHome() {
         {categories.map((category) => (
           <div
             key={category.id}
-            className="bg-white/10 backdrop-blur-md shadow-[0_0_15px_rgba(255,255,255,0.1)]  rounded-xl border border-white/10 rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
+            className="bg-white/10 backdrop-blur-md shadow-[0_0_15px_rgba(255,255,255,0.1)]  rounded-xl border border-white/10  shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
           >
             <div className="relative h-64">
               <img
@@ -99,7 +100,7 @@ function ShopingHome() {
                 alt={category.name}
                 className="w-full h-full object-cover"
               />
-              <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
+              <div className="absolute inset-0  bg-opacity-40 flex items-center justify-center">
                 <h3 className="text-white text-2xl font-bold">{category.name}</h3>
               </div>
             </div>
@@ -115,7 +116,7 @@ function ShopingHome() {
                 ))}
               </div>
               <button
-                onClick={() => navigate(`/collection/${category.id}`)}
+                onClick={() => navigate(`/shop/collection/${category.id}`)}
                 className="mt-4 w-full flex items-center justify-center gap-2 bg-white text-black py-2 px-4 rounded-lg hover:scale-103 cursor-pointer origin-center transition-transform duration-300 ease-in-out"
               >
                 <ShoppingBag size={20} />
