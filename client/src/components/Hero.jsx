@@ -1,23 +1,46 @@
-import React from 'react';
-import BackgroundCarousel from './BackgroundCarousel';
-import { useNavigate } from 'react-router-dom';
+import React, { useEffect } from "react";
+import ProductCarousel from "./ProductCarousel";
+import AOS from "aos";
+import "aos/dist/aos.css"; // Import AOS styles
 
-function Hero() {
 
-  const navigate = useNavigate(); 
+
+
+const Hero = () => {
+
+  useEffect(() => {
+    AOS.init({
+      duration: 3000, // Animation duration in milliseconds
+      once: true, // Whether animation should happen only once
+    });
+  }, []);
+
   return (
-    <section className="min-h-[96vh] flex items-center justify-between p-[6rem_4rem] gap-8  overflow-hidden mt-[30px] border-b-2 border-[rgba(0,0,0,0.5)]">
-      <BackgroundCarousel />
-      <div className='hero-conntent'>
-      <h1 style={{ fontFamily: '"Bangers", cursive' }} className="font-deadpool  mt-[9px] text-[4.2rem] uppercase font-[extra-expanded] text-left animate-[title-glow_7s_ease-in-out_infinite]">Unleash <br /> Your <br />Inner Hero</h1>
-      
-      <p className="hero-subtitle"> <br />"Not all Heros wear Capes...But you Can"</p>
-      <button
-      onClick={() => navigate('/shop/home')}
-      className="inline-block px-12 py-4 bg-gradient-to-r from-blue-900 to-[#7402ff] text-[var(--text)] no-underline rounded-full font-semibold uppercase tracking-wide transition-transform duration-300 ease-in-out hover:translate-y-[-5px] hover:bg-gradient-to-r hover:from-[#7402ff] hover:to-blue-900 hover:shadow-[5px_2px_5px_#6502b6]  cursor-pointer">Shop Now</button>
+    <div className="min-h-screen flex flex-col items-evenly  bg-starry z-10 relative py-35 p-12 container-custom">
+      <div className="" data-aos="fade-up">
+        <div className="max-w-2xl px-2">
+          <h1 className="text-6xl font-bold text-white mb-4 mt-12">
+            Superhero Tees:
+            <br />
+            Unleash Your Inner
+            <br />
+            Hero!
+          </h1>
+          <p className="text-gray-300 mb-8 text-lg mt-8">
+            Explore Starry Night's Zodiac exclusive superhero collection.
+            High-quality, unique designs printed on comfortable fabrics. Express
+            your inner hero in style!
+          </p>
+          <button className="bg-purple-500 text-1xl mt-0.5 text-white px-6 py-3 rounded-md hover:bg-purple-600">
+            Shop Now
+          </button>
+        </div>
       </div>
-    </section>
+      <div className="mt-40 w-full" data-aos="fade-up" >
+      <ProductCarousel />
+      </div>
+    </div>
   );
-}
+};
 
 export default Hero;

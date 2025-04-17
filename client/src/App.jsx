@@ -1,12 +1,18 @@
-import { useState } from 'react'
-import './App.css';
-import './index.css'
-import AuthLayout from './components/auth/layout'
-
-import {Routes} from "react-router-dom"
-
-import { Route } from 'react-router-dom'
-
+import React from 'react';
+import Navbar from './components/Navbar';
+import Hero from './components/Hero';
+import { Routes, Route } from 'react-router-dom';
+import StarryBackground from './components/StarryBackground';
+import ProductCarousel from './components/ProductCarousel';
+import Description from './components/Description';
+import Categories from './components/Categories';
+import TrendingTees from './components/TrendingTees';
+import Benefits from './components/Benefits';
+import Features from './components/Features';
+import TeesShine from './components/TeesShine';
+import DiscountSection from './components/DiscountSection';
+import TeeInsights from './components/TeeInsights';
+import AuthLayout from './components/auth/layout';
 import AuthLogin from "./pages/auth/login"
 import AuthRegister from "./pages/auth/register"
 import AdminLayout from './components/admin-view/layout'
@@ -24,32 +30,32 @@ import CheckAuth from './components/common/check-auth'
 import UnauthPage from './pages/un-auth page/index'
 
 
-import React from 'react';
-import Navbar from './components/Navbar';
-import Hero from './components/Hero';
-import Footer from './components/Footer';
-
-
 function App() {
-  
-  const isAuthenticated = true; // Simulating authentication status
+
+  const isAuthenticated = false; // Simulating authentication status
   const user ={
     name: "John Doe",
     role:"user"
   };
-
+ 
   return (
     <>
-        <Routes>
-        
-          <Route path='/' element={<div className='flex flex-col overflow-hidden'>
-      <main>
-      <Navbar></Navbar>
-        <Hero />
-      </main>
-      <Footer></Footer>
+     <Routes>
+     <Route path='/' element={
+    <div className="min-h-screen relative bg-[#0a192f] z-100">
+      <StarryBackground />
+      <Navbar />
+      <Hero />
+      <Description></Description>
+      <Categories></Categories>
+      <TrendingTees></TrendingTees>
+      <Benefits></Benefits>
+      <Features></Features>
+      <TeesShine></TeesShine>
+      <DiscountSection></DiscountSection>
+      <TeeInsights></TeeInsights>
       </div>}/>
-          <Route path = "/auth" element= {<CheckAuth isAuthenticated={isAuthenticated} user={user}><AuthLayout/></CheckAuth>}>
+      <Route path = "/auth" element= {<CheckAuth isAuthenticated={isAuthenticated} user={user}><AuthLayout/></CheckAuth>}>
             <Route path="login" element={<AuthLogin/>}></Route>
             <Route path="register" element={<AuthRegister/>}></Route>
           </Route>
@@ -67,15 +73,10 @@ function App() {
           </Route>
           <Route path='*' element={<NotFound/>}/>
           <Route path='/unauth-page' element={<UnauthPage/>}></Route>
-        
-        </Routes>
-    
-
-
-
-
+    </Routes>
     </>
-  )
+
+  );
 }
 
-export default App
+export default App;

@@ -4,595 +4,244 @@
 
 @custom-variant dark (&:is(.dark *));
 
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* .bg-starry {
+  background:linear-gradient(
+   to right,
+   blue,black
+  ),;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+} */
 
-.hey{
-    
-    width:350px;
+.container-custom {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-left: 2rem;
+  padding-right: 2rem;
 }
 
-:root {
-    --primary: #2c3e50;
-    --accent: rgb(5, 121, 245);
-    --text: #ecf0f1;
-    --dark: black;
-    --hero-font: 'Bangers', cursive;
-    --body-font: 'Poppins', sans-serif;
-    
-  }
 
-  .headline{
-    font-family:var(--hero-font) ;
-    color: var(--accent);
-    text-shadow: #f7f6f2 1px 1px 3px;
-  }
-  
-  input {
-    padding-left: 1rem ; /* Force the padding to apply */
-  }
-  
-  /* * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  } */
-  
-  html {
-    scroll-behavior: smooth;
-  }
-  
-  body {
-    font-family: var(--hero-font);
-    color: var(--text);
-    line-height: 1.6;
-    overflow-x: hidden;
-    background: black;
-  }
-  
-  /* Carousel */
-  .carousel-container {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    overflow: hidden;
-  }
-  
-  .carousel-slide {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top:85px;
+
+
+
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@keyframes twinkle {
+  0% { opacity: 0.2; }
+  50% { opacity: 1; }
+  100% { opacity: 0.2; }
+}
+
+@keyframes nebulaPulse {
+  0% { opacity: 0.5; }
+  50% { opacity: 0.7; }
+  100% { opacity: 0.5; }
+}
+
+@keyframes galaxyRotate {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.stars {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  /* Deep space background with nebula colors */
+  background: 
+    radial-gradient(circle at 25% 25%, rgba(63, 94, 251, 0.2) 0%, transparent 50%),
+    radial-gradient(circle at 75% 75%, rgba(252, 70, 107, 0.15) 0%, transparent 50%),
+    radial-gradient(circle at 50% 50%, #090b1f 0%, #0a192f 100%);
+}
+
+/* Nebula effect */
+.stars::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: 
+    radial-gradient(ellipse at 20% 30%, rgba(252, 70, 107, 0.15) 0%, transparent 50%),
+    radial-gradient(ellipse at 60% 40%, rgba(63, 94, 251, 0.15) 0%, transparent 60%),
+    radial-gradient(circle at 80% 20%, rgba(138, 43, 226, 0.1) 0%, transparent 40%);
+  animation: nebulaPulse 8s infinite;
+  mix-blend-mode: screen;
+}
+
+/* Small stars with reduced density */
+.stars::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  animation: twinkle 3s infinite;
+  animation-delay: calc(var(--star-seed) * -1s);
+  background-image: 
+    radial-gradient(1px 1px at 15% 15%, rgba(255, 255, 255, 0.8) 100%, transparent),
+    radial-gradient(1px 1px at 35% 45%, rgba(255, 255, 255, 0.7) 100%, transparent),
+    radial-gradient(1px 1px at 55% 25%, rgba(255, 255, 255, 0.8) 100%, transparent),
+    radial-gradient(1px 1px at 75% 65%, rgba(255, 255, 255, 0.7) 100%, transparent);
+  background-repeat: repeat;
+  background-size: 400px 400px;
+}
+
+/* Galaxy spiral effect */
+.stars2 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.stars2::before {
+  content: "";
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  top: -50%;
+  left: -50%;
+  background: 
+    conic-gradient(
+      from 0deg at 50% 50%,
+      transparent 0deg,
+      rgba(138, 43, 226, 0.05) 60deg,
+      rgba(63, 94, 251, 0.05) 180deg,
+      rgba(252, 70, 107, 0.05) 300deg,
+      transparent 360deg
+    );
+  animation: galaxyRotate 60s linear infinite;
+}
+
+/* Medium stars */
+.stars2::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  animation: twinkle 5s infinite;
+  animation-delay: calc(var(--star-seed) * -2s);
+  background-image: 
+    radial-gradient(2px 2px at 25% 25%, rgba(255, 255, 255, 0.9) 100%, transparent),
+    radial-gradient(2px 2px at 50% 75%, rgba(255, 255, 255, 0.8) 100%, transparent);
+  background-repeat: repeat;
+  background-size: 500px 500px;
+}
+
+/* Cosmic dust and star clusters */
+.stars3 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.stars3::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: 
+    radial-gradient(circle at 30% 40%, rgba(252, 70, 107, 0.1) 0%, transparent 30%),
+    radial-gradient(circle at 70% 60%, rgba(63, 94, 251, 0.1) 0%, transparent 30%);
+  filter: blur(30px);
+  mix-blend-mode: screen;
+}
+
+/* Large stars and subtle clusters */
+.stars3::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  animation: twinkle 7s infinite;
+  animation-delay: calc(var(--star-seed) * -3s);
+  background-image: 
+    radial-gradient(2.5px 2.5px at 15% 15%, rgba(255, 255, 255, 0.9) 100%, transparent),
+    radial-gradient(2.5px 2.5px at 65% 65%, rgba(255, 255, 255, 0.8) 100%, transparent),
+    radial-gradient(100px 100px at 25% 25%, rgba(252, 70, 107, 0.08) 0%, transparent 100%),
+    radial-gradient(80px 80px at 75% 75%, rgba(63, 94, 251, 0.08) 0%, transparent 100%);
+  background-repeat: repeat;
+  background-size: 600px 600px;
+}
+
+/* Shooting stars */
+@keyframes meteor {
+  0% {
+    transform: rotate(215deg) translateX(0);
     opacity: 0;
-    transition: opacity 2s ease-in-out;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
   }
-  
-  .carousel-slide.active {
+  10% {
     opacity: 1;
   }
-  
-  .carousel-slide::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.3);
+  70% {
+    opacity: 1;
   }
+  100% {
+    transform: rotate(215deg) translateX(-500px);
+    opacity: 0;
+  }
+}
+
+.meteor-container {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: -1;
+}
+
+.shooting-star {
+  position: absolute;
+  width: 100px;
+  height: 1.5px;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0) 100%);
+  animation: meteor 3s linear infinite;
+  transform-origin: right;
  
-
-  .logo {
-    position: relative;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    }
-  .logo-text {
-    font-family: var(--hero-font);
-    font-size: 2rem;
-    color: rgb(5, 121, 245);
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    text-shadow: 0 0 10px #7402ff;
-  }
-  
-  .logo-cape {
-    width: 30px;
-    height: 40px;
-    /* background:rgb(4, 171, 248) ; */
-    background: rgb(5, 121, 245);
-    clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 80%, 0 100%);
-    animation: cape-flutter 3s ease-in-out infinite;
-  }
-  
-  @keyframes cape-flutter {
-    0%, 100% { transform: rotate(5deg); }
-    50% { transform: rotate(-5deg); }
-  }
-
-
-  
-  .nav-links {
-    display: flex;
-    align-items: center;
-    gap: 2rem;
-  }
-  
-  .nav-links a {
-    color: var(--text);
-    text-decoration: none;
-    font-weight: 600;
-    transition: color 0.3s ease;
-  }
-  
-  .nav-links a:hover,
-  .nav-links a.active {
-    color: var(--accent);
-  }
-  
-  .cart-icon {
-    position: relative;
-    cursor: pointer;
-  }
-  
-  .cart-count {
-    position: absolute;
-    top: -8px;
-    right: -8px;
-    background: var(--accent);
-    color: var(--text);
-    font-size: 0.8rem;
-    padding: 2px 6px;
-    border-radius: 50%;
-  }
-  
-  
-  @keyframes title-glow {
-    0%, 100% { text-shadow: 0 0 20px #02c0ff ; color: aliceblue; }
-    50% { text-shadow: 0 0 20px #f7f6f2 ; color: aliceblue; }
-  }
-  
-  .hero-subtitle {
-    font-size: 1.5rem;
-    /* font-family:'Courier New', Courier, monospace; */
-    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    color: rgb(218, 225, 228);
-    margin-bottom: 2rem;
-    text-shadow: 1px 3px 10px rgba(0, 0, 0, 0.1);
-  }
-  .hero-content {
-    flex: 0 0 500px;
-    top: 0;
-    }
-  
-  /* Products Section */
-  .products {
-    position: relative;
-     padding-top: 2rem;
-    padding-bottom: 4rem;
-   
-    background: url('./assets/deadpool.jpg');
-    background-size: cover;
-    background-position: center;
-    width: 100%;
-    top: 0;
-    z-index: 1; /* Ensure content is above the overlay */
-}
-  .products-2 {
-    background: url('./assets/marvel2.jpg');
-    background-size: cover;
-    background-position: center;
-    width: 100%;
-    z-index: 1; 
 }
 
-
-  .products::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.58); /* Adjust the color and opacity */
-    z-index: -1; /* Place the overlay behind the content */
+.shooting-star::after {
+  content: '';
+  position: absolute;
+  width: 15px;
+  height: 1.5px;
+  background: rgba(255, 255, 255, 0.3);
+  right: 0;
+  top: 0;
 }
-  
-  .product-grid {
-    width: 100%; /* Full width */
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1rem;
-    padding: 2rem;
-  }
-  
-  .product-card {
-    perspective: 1500px;
-    height: 500px;
-    opacity: 0;
 
-    transform: translateY(50px);
-    transition: opacity 2s ease-out, transform 2s ease-out;
-  }
-  
-  .product-card.reveal {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  
-  .card-inner {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    transform-style: preserve-3d;
-    transition: transform 0.8s;
-  }
-  
-  .product-card:hover .card-inner {
-    transform: rotateY(180deg);
-  }
-  
-  .card-front,
-  .card-back {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    backface-visibility: hidden;
-    border-radius: 20px;
-    padding: 2rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    backdrop-filter: blur(10px);
-  }
-  
-  .card-front {
-    padding-top: 2rem;
-    background: transparent;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-  }
-  
-  .card-back {
-    background: rgba(0, 0, 0, 0.5);
-    color: whitesmoke;
-    transform: rotateY(180deg);
-  }
-  
-  .product-image {
-    width: 90%;
-    height: 220px;
-    margin-top:2rem;
-    margin-bottom: 1.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: transform 0.3s ease;
-    
-  }
-  .product-image img {
-
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-    transition: transform 0.3s ease;
-  }
-  
-  .product-card:hover .product-image {
-    transform: scale(1.1);
-  }
-  
-  .product-card h3 {
-    font-family: var(--hero-font);
-    font-size: 1.8rem;
-    color: var(--accent);
-    margin-bottom: 0.5rem;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
-  }
-  
-  .price {
-    font-size: 1.4rem;
-    font-weight: 600;
-    color: var(--text);
-  }
-  
-  .card-back h4 {
-    font-size: 1.4rem;
-    margin-bottom: 1rem;
-    color: var(--text);
-  }
-  
-  .card-back ul {
-    list-style: none;
-    margin-bottom: 2rem;
-    text-align: center;
-  }
-  
-  .card-back li {
-    margin-bottom: 0.5rem;
-  }
-  
-  .add-to-cart {
-    background: var(--text);
-    color: var(--accent);
-    border: none;
-    padding: 0.8rem 2rem;
-    border-radius: 25px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-  
-  .add-to-cart:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 20px rgba(236, 240, 241, 0.3);
-  }
-  
-  /* Footer */
-  footer {
-    background: black;
-    padding: 3rem 0;
-    text-align: center;
-    position: relative;
-  }
-  
-  .footer-content {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 2rem;
-  }
-  
-  .footer-logo {
-    font-family: var(--hero-font);
-    font-size: 2rem;
-    color: var(--accent);
-    margin-bottom: 1rem;
-  }
-  
-  .social-links {
-    display: flex;
-    justify-content: center;
-    gap: 2rem;
-    margin-top: 2rem;
-  }
-  
-  .social-links a {
-    color: var(--text);
-    transition: color 0.3s ease;
-  }
-  
-  .social-links a:hover {
-    color: var(--accent);
-  }
-  
-  /* Responsive Design */
-  @media (max-width: 900px) {
-    .nav-links a:not(.cart-icon) {
-      display: none;
-    }
-  
-    .hero-title {
-      font-size: 3rem;
-    }
-  
-    .product-grid {
-      grid-template-columns: 1fr;
-      padding: 1rem;
-    }
-  
-    .product-card {
-      height:400px;
-    }
-  }
+.shooting-star:nth-child(1) { top: 10%; right: 10%; animation-delay: 0s; }
+.shooting-star:nth-child(2) { top: 15%; right: 30%; animation-delay: 1.6s; }
+.shooting-star:nth-child(3) { top: 25%; right: 50%; animation-delay: 2.8s; }
+.shooting-star:nth-child(4) { top: 35%; right: 25%; animation-delay: 4.2s; }
+.shooting-star:nth-child(5) { top: 45%; right: 45%; animation-delay: 5.6s; }
+.shooting-star:nth-child(6) { top: 50%; right: 15%; animation-delay: 6.8s; }
 
 
+.stars, .stars2, .stars3 {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -1;
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  @keyframes twinkle {
-    0% { opacity: 0.2; }
-    50% { opacity: 1; }
-    100% { opacity: 0.2; }
-  }
-  
-  @keyframes nebulaPulse {
-    0% { opacity: 0.5; }
-    50% { opacity: 0.7; }
-    100% { opacity: 0.5; }
-  }
-  
-  @keyframes galaxyRotate {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-  }
-  
-  .stars {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    /* Deep space background with nebula colors */
-    background: 
-      radial-gradient(circle at 25% 25%, rgba(63, 94, 251, 0.2) 0%, transparent 50%),
-      radial-gradient(circle at 75% 75%, rgba(252, 70, 107, 0.15) 0%, transparent 50%),
-      radial-gradient(circle at 50% 50%, #090b1f 0%, #0a192f 100%);
-  }
-  
-  /* Nebula effect */
-  .stars::before {
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: 
-      radial-gradient(ellipse at 20% 30%, rgba(252, 70, 107, 0.15) 0%, transparent 50%),
-      radial-gradient(ellipse at 60% 40%, rgba(63, 94, 251, 0.15) 0%, transparent 60%),
-      radial-gradient(circle at 80% 20%, rgba(138, 43, 226, 0.1) 0%, transparent 40%);
-    animation: nebulaPulse 8s infinite;
-    mix-blend-mode: screen;
-  }
-  
-  /* Small stars with reduced density */
-  .stars::after {
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    animation: twinkle 3s infinite;
-    animation-delay: calc(var(--star-seed) * -1s);
-    background-image: 
-      radial-gradient(1px 1px at 15% 15%, rgba(255, 255, 255, 0.8) 100%, transparent),
-      radial-gradient(1px 1px at 35% 45%, rgba(255, 255, 255, 0.7) 100%, transparent),
-      radial-gradient(1px 1px at 55% 25%, rgba(255, 255, 255, 0.8) 100%, transparent),
-      radial-gradient(1px 1px at 75% 65%, rgba(255, 255, 255, 0.7) 100%, transparent);
-    background-repeat: repeat;
-    background-size: 400px 400px;
-  }
-  
-  /* Galaxy spiral effect */
-  .stars2::before {
-    content: "";
-    position: absolute;
-    width: 200%;
-    height: 200%;
-    top: -50%;
-    left: -50%;
-    background: 
-      conic-gradient(
-        from 0deg at 50% 50%,
-        transparent 0deg,
-        rgba(138, 43, 226, 0.05) 60deg,
-        rgba(63, 94, 251, 0.05) 180deg,
-        rgba(252, 70, 107, 0.05) 300deg,
-        transparent 360deg
-      );
-    animation: galaxyRotate 60s linear infinite;
-  }
-  
-  /* Medium stars */
-  .stars2::after {
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    animation: twinkle 5s infinite;
-    animation-delay: calc(var(--star-seed) * -2s);
-    background-image: 
-      radial-gradient(2px 2px at 25% 25%, rgba(255, 255, 255, 0.9) 100%, transparent),
-      radial-gradient(2px 2px at 50% 75%, rgba(255, 255, 255, 0.8) 100%, transparent);
-    background-repeat: repeat;
-    background-size: 500px 500px;
-  }
-  
-  /* Cosmic dust and star clusters */
-  .stars3::before {
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: 
-      radial-gradient(circle at 30% 40%, rgba(252, 70, 107, 0.1) 0%, transparent 30%),
-      radial-gradient(circle at 70% 60%, rgba(63, 94, 251, 0.1) 0%, transparent 30%);
-    filter: blur(30px);
-    mix-blend-mode: screen;
-  }
-  
-  /* Large stars and subtle clusters */
-  .stars3::after {
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    animation: twinkle 7s infinite;
-    animation-delay: calc(var(--star-seed) * -3s);
-    background-image: 
-      radial-gradient(2.5px 2.5px at 15% 15%, rgba(255, 255, 255, 0.9) 100%, transparent),
-      radial-gradient(2.5px 2.5px at 65% 65%, rgba(255, 255, 255, 0.8) 100%, transparent),
-      /* Star clusters */
-      radial-gradient(100px 100px at 25% 25%, rgba(252, 70, 107, 0.08) 0%, transparent 100%),
-      radial-gradient(80px 80px at 75% 75%, rgba(63, 94, 251, 0.08) 0%, transparent 100%);
-    background-repeat: repeat;
-    background-size: 600px 600px;
-  }
-  
-  /* Shooting stars */
-  @keyframes meteor {
-    0% {
-      transform: rotate(215deg) translateX(0);
-      opacity: 0;
-    }
-    10% {
-      opacity: 1;
-    }
-    70% {
-      opacity: 1;
-    }
-    100% {
-      transform: rotate(215deg) translateX(-900px);
-      opacity: 0;
-    }
-  }
-  
-  .meteor-container {
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    overflow: hidden;
-  }
-  
-  .shooting-star {
-    position: absolute;
-    width: 150px;
-    height: 1.5px;
-    background: linear-gradient(90deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0) 100%);
-    animation: meteor 3s linear infinite;
-    transform-origin: right;
-  }
-  
-  .shooting-star::after {
-    content: '';
-    position: absolute;
-    width: 15px;
-    height: 1.5px;
-    background: rgba(255, 255, 255, 0.3);
-    right: 0;
-    top: 0;
-  }
-  
-  .shooting-star:nth-child(1) { top: 10%; right: 10%; animation-delay: 0s; }
-  .shooting-star:nth-child(2) { top: 15%; right: 30%; animation-delay: 1.6s; }
-  .shooting-star:nth-child(3) { top: 25%; right: 50%; animation-delay: 2.8s; }
-  .shooting-star:nth-child(4) { top: 35%; right: 25%; animation-delay: 4.2s; }
-  .shooting-star:nth-child(5) { top: 45%; right: 45%; animation-delay: 5.6s; }
-  .shooting-star:nth-child(6) { top: 50%; right: 15%; animation-delay: 6.8s; }
+button:hover{
+  cursor: pointer;
+}
