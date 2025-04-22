@@ -1,9 +1,23 @@
 import React from 'react';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Categories = () => {
+
+  useEffect(() => {
+    AOS.init({
+      duration: 2000, // Animation duration
+      once: true, // Animation happens only once
+    });
+  }, []);
+
+  const navigate = useNavigate();
+
   return (
-    <div className="py-12 bg-[rgba(0,0,0,0.6)]">
-      <div className="container-custom">
+    <div className="py-12 bg-gradient-to-b from-black/35 to-black/45" >
+      <div className="container-custom" data-aos="fade-left">
         <h2 className="text-white text-2xl mb-12">Tee Categories</h2>
         <div class="grid grid-cols-3 gap-4 max-w-5xl mx-auto p-4">
   <div class="col-span-1 row-span-2">
@@ -19,7 +33,9 @@ const Categories = () => {
     <img src="your-image4.jpg" alt="Vogue Store" class="w-full h-48 object-cover rounded-lg" />
   </div>
         <div className="mt-8">
-          <button className="bg-purple-500 text-white text-lg font-medium px-7 py-2 w-[150px] rounded-md hover:bg-purple-600 cursor-pointer">
+          <button onClick={()=>{
+            navigate("/shop/home")
+          }} className="bg-purple-500 text-white text-lg font-medium px-7 py-2 w-[150px] rounded-md hover:bg-purple-600 cursor-pointer">
             Shop
           </button>
         </div>

@@ -2,11 +2,15 @@ import React, { useEffect } from "react";
 import ProductCarousel from "./ProductCarousel";
 import AOS from "aos";
 import "aos/dist/aos.css"; // Import AOS styles
+import { useNavigate } from "react-router-dom";
 
 
 
 
 const Hero = () => {
+
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     AOS.init({
@@ -31,7 +35,11 @@ const Hero = () => {
             High-quality, unique designs printed on comfortable fabrics. Express
             your inner hero in style!
           </p>
-          <button className="bg-purple-500 text-1xl mt-0.5 text-white px-6 py-3 rounded-md hover:bg-purple-600">
+          <button
+          onClick={()=>{
+            navigate ("/shop/home")
+          }} 
+          className="bg-purple-500 text-1xl mt-0.5 text-white px-6 py-3 rounded-md hover:bg-purple-600">
             Shop Now
           </button>
         </div>

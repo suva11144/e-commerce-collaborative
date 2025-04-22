@@ -64,11 +64,11 @@ function AuthLogin(){
     }
 
     return(
-     <div className="mx-auto w-full max-w-md space-y-6 bg-white/10 backdrop-blur-md shadow-[0_0_15px_rgba(255,255,255,0.1)] p-8 rounded-xl border border-white/10">
+     <div className="mx-auto w-full max-w-md space-y-6 bg-white/10 backdrop-blur-md shadow-[0_0_15px_rgba(255,255,255,0.1)] p-12 rounded-xl border border-white/10 h-105" >
         <div className="text-center">
             <h1 className="text-3xl font-bold tracking-tight text-white">Sign in to your account</h1>
             <p className="mt-2 text-blue-200">Don't have an account
-                <Link className="font-medium text-blue-400 hover:text-blue-300 hover:underline ml-2" to='/auth/register'>Register</Link>
+                <Link className="font-medium text-blue-700 hover:text-blue-300 hover:underline ml-2" to='/auth/register'>Register</Link>
             </p>
         </div>
         <CommonForm

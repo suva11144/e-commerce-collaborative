@@ -1,45 +1,44 @@
 import React from 'react';
 
-const products = [
-  {
-    name: 'Cosmic Captain Tee',
-    price: '$25',
-    image: '/cosmic-captain.jpg'
-  },
-  {
-    name: 'Galaxy Guardian Tee',
-    price: '$25',
-    image: '/galaxy-guardian.jpg'
-  },
-  {
-    name: 'Regular Planet Tee',
-    price: '$25',
-    image: '/regular-planet.jpg'
-  },
-  {
-    name: 'Nature Knight Tee',
-    price: '$25',
-    image: '/nature-knight.jpg'
-  }
-];
-
 const ProductCarousel = () => {
+  const collections = [
+    {
+      title: 'Cosmic Defenders',
+      image: '/images/cosmic-defenders.jpg', // Replace with actual image paths
+      alt: 'Guardians of the Galaxy',
+    },
+    {
+      title: 'City Guardians',
+      image: '/images/city-guardians.jpg',
+      alt: 'Superhero with cape',
+    },
+    {
+      title: 'Legendary Warriors',
+      image: '/images/legendary-warriors.jpg',
+      alt: 'Avengers group',
+    },
+  ];
+
   return (
-    <div className="py-12 bg-transparent left-0">
-      <div className="container-custom">
-        <h3 className="text-white mb-6">Explore Our Heroic Collection</h3>
-        <br />
-        <div className="flex space-x-6 overflow-x-auto pb-4">
-          {products.map((product, index) => (
-            <div key={index} className="min-w-[250px] bg-black rounded-lg overflow-hidden h-30 flex flex-row items-between justify-between p-5">      
-                <img  className="  h-20 w-20 object-cover rounded-full" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTA3od1itZ4Av_g2-f5lNUOLkVfxpOlzT1BbDcWZiv0CpE1dHxwbHBGf0xf_daes2x1hUU&usqp=CAU" alt={product.name} />
-              <div className="m-3">
-                <h4 className="text-white ">{product.name}</h4>
-                <p className="text-purple-400">{product.price}</p>
-              </div>
+    <div className="bg-transparent text-white py-16 px-4 sm:px-8 ">
+      <div className="text-center mb-12">
+        <h2 className="text-4xl font-bold">Hero Collections</h2>
+        <p className="mt-2 text-gray-300">Explore our themed collections, each with its own unique story.</p>
+      </div>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        {collections.map((collection, index) => (
+          <div key={index} className="relative group overflow-hidden rounded-lg shadow-lg">
+            <img
+              src={collection.image}
+              alt={collection.alt}
+              className="w-full h-80 object-cover transform transition-transform duration-300 group-hover:scale-105"
+            />
+            <div className="absolute inset-0 bg-black bg-opacity-40 flex flex-col items-center justify-center text-center transition-opacity duration-300">
+              <h3 className="text-xl font-semibold">{collection.title}</h3>
+              <button className="mt-4 px-4 py-2 bg-white text-black rounded-md hover:bg-gray-200 transition">Explore</button>
             </div>
-          ))}
-        </div>
+          </div>
+        ))}
       </div>
     </div>
   );

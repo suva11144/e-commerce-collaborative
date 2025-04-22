@@ -1,134 +1,119 @@
-
-
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Filter, ShoppingBag } from 'lucide-react';
-import spiderMan from '../../assets/spiderman.jpeg';
-
-// Categories data
-const categories = [
-  {
-    id: 'marvel',
-    name: 'Marvel Collection',
-    image: spiderMan,
-    subcategories: ['Avengers', 'Spider-Man', 'X-Men']
-  },
-  {
-    id: 'dc',
-    name: 'DC Heroes',
-    image: 'https://images.unsplash.com/photo-1531259683007-016a7b628fc3?w=800',
-    subcategories: ['Batman', 'Superman', 'Wonder Woman']
-  },
-  {
-    id: 'anime',
-    name: 'Anime Collection',
-    image: 'https://images.unsplash.com/photo-1613376023733-0a73315d9b06?w=800',
-    subcategories: ['Dragon Ball', 'Naruto', 'One Piece']
-  }
-];
+import Header from '../../components/shopping-view/Header';
+import ShopPage from '../../components/shopping-view/ShopPage';
+import Cart from '../../components/shopping-view/Cart';
+import { products } from '../../components/data/products';
 
 function ShopingHome() {
-  const navigate = useNavigate();
-  const [showFilters, setShowFilters] = useState(false);
+  const [cartItems, setCartItems] = useState([]);
+  const [isCartOpen, setIsCartOpen] = useState(false);
+
+  const handleAddToCart = (productId, size, color) => {
+    const existingItemIndex = cartItems.findIndex(
+      item => item.productId === productId && item.size === size && item.color === color
+    );
+
+    if (existingItemIndex >= 0) {
+      const updatedItems = [...cartItems];
+      updatedItems[existingItemIndex].quantity += 1;
+      setCartItems(updatedItems);
+    } else {
+      setCartItems([...cartItems, { productId, quantity: 1, size, color }]);
+    }
+
+    setIsCartOpen(true);
+  };
+
+  const handleRemoveFromCart = (productId) => {
+    setCartItems(cartItems.filter(item => item.productId !== productId));
+  };
+
+  const handleUpdateQuantity = (productId, quantity) => {
+    setCartItems(
+      cartItems.map(item =>
+        item.productId === productId ? { ...item, quantity } : item
+      )
+    );
+  };
+
+  const handleCheckout = () => {
+    alert('Checkout functionality would be implemented here!');
+  };
+
+  const cartItemsCount = cartItems.reduce(
+    (total, item) => total + item.quantity,
+    0
+  );
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      {/* Header */}
-      <div className="flex justify-between items-center mb-8">
-        <h1 className="text-3xl font-bold text-amber-50">Hero's Armory Shop</h1>
-        <button
-          onClick={() => setShowFilters(!showFilters)}
-          className="flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-md shadow-[0_0_15px_rgba(255,255,255,0.1)] rounded-lg hover:scale-105 cursor-pointer origin-center transition-transform duration-300 ease-in-out"
-        >
-          <Filter size={20} />
-          Filters
-        </button>
-      </div>
+    <div className="min-h-screen bg-transparent">
+      <Header cartItemsCount={cartItemsCount} onCartClick={() => setIsCartOpen(true)} />
 
-      {/* Filters Panel */}
-      {showFilters && (
-        <div className="bg-white/10 backdrop-blur-md shadow-[0_0_15px_rgba(255,255,255,0.1)]  rounded-xl p-4 rounded-lg shadow-md mb-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <main>
+        <ShopPage onAddToCart={handleAddToCart} />
+      </main>
+
+      <Cart
+        isOpen={isCartOpen}
+        onClose={() => setIsCartOpen(false)}
+        cartItems={cartItems}
+        products={products}
+        onRemoveItem={handleRemoveFromCart}
+        onUpdateQuantity={handleUpdateQuantity}
+        onCheckout={handleCheckout}
+      />
+
+      <footer className="bg-gray-100 py-12 mt-16">
+        <div className="container mx-auto px-4">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div>
-              <label className="block text-sm font-medium text-white-700 mb-2">
-                Price Range
-              </label>
-              <select className="w-full border rounded-md p-2">
-                <option>All Prices</option>
-                <option>Under $25</option>
-                <option>$25 - $50</option>
-                <option>Over $50</option>
-              </select>
+              <h3 className="text-lg font-bold mb-4">THREAD</h3>
+              <p className="text-gray-600 text-sm">
+                Premium t-shirts crafted with quality and sustainability in mind.
+              </p>
             </div>
             <div>
-              <label className="block text-sm font-medium text-white-700 mb-2">
-                Size
-              </label>
-              <select className="w-full border rounded-md p-2">
-                <option>All Sizes</option>
-                <option>S</option>
-                <option>M</option>
-                <option>L</option>
-                <option>XL</option>
-              </select>
+              <h4 className="font-medium mb-4">Shop</h4>
+              <ul className="space-y-2 text-gray-600 text-sm">
+                <li><a href="#" className="hover:text-gray-900">All Products</a></li>
+                <li><a href="#" className="hover:text-gray-900">Men</a></li>
+                <li><a href="#" className="hover:text-gray-900">Women</a></li>
+                <li><a href="#" className="hover:text-gray-900">Limited Edition</a></li>
+              </ul>
             </div>
             <div>
-              <label className="block text-sm font-medium text-white-700 mb-2">
-                Sort By
-              </label>
-              <select className="w-full border rounded-md p-2">
-                <option>Featured</option>
-                <option>Price: Low to High</option>
-                <option>Price: High to Low</option>
-                <option>Newest</option>
-              </select>
+              <h4 className="font-medium mb-4">Company</h4>
+              <ul className="space-y-2 text-gray-600 text-sm">
+                <li><a href="#" className="hover:text-gray-900">About Us</a></li>
+                <li><a href="#" className="hover:text-gray-900">Sustainability</a></li>
+                <li><a href="#" className="hover:text-gray-900">Our Story</a></li>
+                <li><a href="#" className="hover:text-gray-900">Careers</a></li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="font-medium mb-4">Customer Service</h4>
+              <ul className="space-y-2 text-gray-600 text-sm">
+                <li><a href="#" className="hover:text-gray-900">Contact Us</a></li>
+                <li><a href="#" className="hover:text-gray-900">Shipping & Returns</a></li>
+                <li><a href="#" className="hover:text-gray-900">FAQ</a></li>
+                <li><a href="#" className="hover:text-gray-900">Size Guide</a></li>
+              </ul>
+            </div>
+          </div>
+
+          <div className="border-t border-gray-200 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+            <p className="text-sm text-gray-500">© 2025 THREAD. All rights reserved.</p>
+            <div className="mt-4 md:mt-0">
+              <ul className="flex space-x-6">
+                <li><a href="#" className="text-gray-500 hover:text-gray-900">Privacy Policy</a></li>
+                <li><a href="#" className="text-gray-500 hover:text-gray-900">Terms of Service</a></li>
+              </ul>
             </div>
           </div>
         </div>
-      )}
-
-      {/* Categories Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {categories.map((category) => (
-          <div
-            key={category.id}
-            className="bg-white/10 backdrop-blur-md shadow-[0_0_15px_rgba(255,255,255,0.1)]  rounded-xl border border-white/10  shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
-          >
-            <div className="relative h-64">
-              <img
-                src={category.image}
-                alt={category.name}
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute inset-0  bg-opacity-40 flex items-center justify-center">
-                <h3 className="text-white text-2xl font-bold">{category.name}</h3>
-              </div>
-            </div>
-            <div className="p-6">
-              <div className="space-y-2">
-                {category.subcategories.map((sub) => (
-                  <button
-                    key={sub}
-                    className="block w-full text-left px-4 py-2 text-white hover:scale-102 origin-center transition-transform duration-300 ease-in-out"
-                  >
-                    {sub}
-                  </button>
-                ))}
-              </div>
-              <button
-                onClick={() => navigate(`/shop/collection/${category.id}`)}
-                className="mt-4 w-full flex items-center justify-center gap-2 bg-white text-black py-2 px-4 rounded-lg hover:scale-103 cursor-pointer origin-center transition-transform duration-300 ease-in-out"
-              >
-                <ShoppingBag size={20} />
-                View Collection
-              </button>
-            </div>
-          </div>
-        ))}
-      </div>
+      </footer>
     </div>
   );
 }
-
 
 export default ShopingHome;

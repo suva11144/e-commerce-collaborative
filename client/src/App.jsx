@@ -24,10 +24,11 @@ import ShoppingViewLayout from './components/shopping-view/layout'
 import NotFound from './pages/not-found/index'
 import ShopingHome from './pages/shopping-view/home'
 import ShopingAccount from './pages/shopping-view/account'
-import Collection from './pages/shopping-view/listing'
 import ShopingCheckout from './pages/shopping-view/checkout'
 import CheckAuth from './components/common/check-auth'
 import UnauthPage from './pages/un-auth page/index'
+import { TreeDeciduous } from 'lucide-react';
+import UserNav from './components/UserNav'
 
 
 function App() {
@@ -44,7 +45,11 @@ function App() {
      <Route path='/' element={
     <div className="min-h-screen relative bg-[#0a192f] z-100">
       <StarryBackground />
-      <Navbar />
+
+      {
+        isAuthenticated ? <UserNav/> : <Navbar/>
+      }
+
       <Hero />
       <Description></Description>
       <Categories></Categories>
@@ -67,7 +72,6 @@ function App() {
           </Route>  
           <Route path= "/shop" element={<CheckAuth isAuthenticated={isAuthenticated} user={user}><ShoppingViewLayout/></CheckAuth>}>
             <Route path='account' element={<ShopingAccount/>}/>
-            <Route path='collection/:id' element={<Collection/>}/>
             <Route path='checkout' element={<ShopingCheckout/>}/>
             <Route path='home' element={<ShopingHome/>}/>
           </Route>
