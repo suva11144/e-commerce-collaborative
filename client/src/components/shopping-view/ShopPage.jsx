@@ -4,6 +4,7 @@ import Filters from './Filters';
 import { products } from '../data/products';
 import { SlidersHorizontal, X } from 'lucide-react';
 
+
 const ShopPage = ({ onAddToCart }) => {
   const allCategories = ['all', 'men', 'women', 'unisex', 'limited'];
   const allSizes = ['XS', 'S', 'M', 'L', 'XL', 'XXL'];
@@ -13,6 +14,9 @@ const ShopPage = ({ onAddToCart }) => {
   const [selectedSizes, setSelectedSizes] = useState([]);
   const [selectedColors, setSelectedColors] = useState([]);
   const [isFilterOpen, setIsFilterOpen] = useState(false);
+
+
+
 
   const filteredProducts = products.filter((product) => {
     if (selectedCategory !== 'all' && product.category !== selectedCategory) {
@@ -63,8 +67,10 @@ const ShopPage = ({ onAddToCart }) => {
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="mb-8 text-center">
-        <h1 className="text-3xl font-bold text-[rgba(239,231,215)] mb-2">Our Collection</h1>
         <p className="text-[rgba(239,231,215)] max-w-2xl mx-auto">
+          <br />
+          <br />
+          <br />
           Discover our premium t-shirts crafted from the finest materials for exceptional comfort and style.
         </p>
       </div>
@@ -137,7 +143,7 @@ const ShopPage = ({ onAddToCart }) => {
           {(selectedSizes.length > 0 || selectedColors.length > 0 || selectedCategory !== 'all') && (
             <div className="mb-6 flex flex-wrap gap-2">
               {selectedCategory !== 'all' && (
-                <div className="inline-flex items-center bg-gray-100 px-3 py-1 rounded-full text-sm">
+                <div className="inline-flex items-center bg-gray-100 px-3 py-1 rounded-full  text-sm">
                   Category: {selectedCategory}
                   <button
                     className="ml-2 text-gray-500"
@@ -149,10 +155,10 @@ const ShopPage = ({ onAddToCart }) => {
               )}
 
               {selectedSizes.map(size => (
-                <div key={size} className="inline-flex items-center bg-gray-100 px-3 py-1 rounded-full text-sm">
+                <div key={size} className="inline-flex items-center bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">
                   Size: {size}
                   <button
-                    className="ml-2 text-gray-500"
+                    className="ml-2 text-gray-700"
                     onClick={() => handleSizeChange(size)}
                   >
                     <X size={14} />

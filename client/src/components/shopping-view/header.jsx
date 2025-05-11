@@ -3,7 +3,7 @@ import { ShoppingBag, Menu, X, Search } from 'lucide-react';
 
 const Header = () => {
   return (
-    <header className="sticky top-0 z-40 w-full transition-all duration-300 bg-black/20 backdrop-blur-3xl">
+    <header className="top-0 left-0 right-0 z-50 border-b-1 border-[rgba(111,101,255,0.5)] mb-300 fixed bg-[#942af843] backdrop-blur-3xl h-18">
       <div className="container mx-auto px-4 md:px-6">
         <div className="flex items-center justify-between h-16 md:h-20">
           
@@ -17,7 +17,6 @@ const Header = () => {
             <a href="#" className="text-[rgb(239,231,215)] hover:text-[rgb(200,190,170)] font-medium">Shop</a>
             <a href="#" className="text-[rgb(239,231,215)] hover:text-[rgb(200,190,170)]">Collections</a>
             <a href="#" className="text-[rgb(239,231,215)] hover:text-[rgb(200,190,170)]">About</a>
-            <a href="#" className="text-[rgb(239,231,215)] hover:text-[rgb(200,190,170)]">Contact</a>
           </nav>
 
           {/* Actions */}

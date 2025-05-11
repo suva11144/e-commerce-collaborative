@@ -29,11 +29,12 @@ import CheckAuth from './components/common/check-auth'
 import UnauthPage from './pages/un-auth page/index'
 import { TreeDeciduous } from 'lucide-react';
 import UserNav from './components/UserNav'
+import ProductPage from './components/shopping-view/ProductPage'; 
 
 
 function App() {
 
-  const isAuthenticated = false; // Simulating authentication status
+  const isAuthenticated = true; // Simulating authentication status
   const user ={
     name: "John Doe",
     role:"user"
@@ -72,8 +73,11 @@ function App() {
           </Route>  
           <Route path= "/shop" element={<CheckAuth isAuthenticated={isAuthenticated} user={user}><ShoppingViewLayout/></CheckAuth>}>
             <Route path='account' element={<ShopingAccount/>}/>
-            <Route path='checkout' element={<ShopingCheckout/>}/>
+            <Route path='view' element={<ProductPage/>}/>
             <Route path='home' element={<ShopingHome/>}/>
+          </Route>
+          <Route path= "/product/:id" element={<CheckAuth isAuthenticated={isAuthenticated} user={user}><ShoppingViewLayout/></CheckAuth>}>
+            <Route path='' element={<ProductPage/>}/>
           </Route>
           <Route path='*' element={<NotFound/>}/>
           <Route path='/unauth-page' element={<UnauthPage/>}></Route>

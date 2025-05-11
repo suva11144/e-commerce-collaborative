@@ -60,7 +60,7 @@ const Filters = ({
       </div>
 
       <div>
-        <h3 className="text-lg font-medium text-gray-900 mb-3">Sizes</h3>
+        <h3 className="text-lg font-medium text-white mb-3">Sizes</h3>
         <div className="flex flex-wrap gap-2">
           {sizes.map((size) => (
             <button
@@ -68,8 +68,8 @@ const Filters = ({
               onClick={() => onSizeChange(size)}
               className={`px-3 py-1 rounded-md text-sm ${
                 selectedSizes.includes(size)
-                  ? 'bg-gray-900 text-white'
-                  : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                   ? 'bg-black/20 text-white'
+                  : 'text-gray-300 hover:bg-white/5'
               }`}
             >
               {size}
@@ -79,14 +79,14 @@ const Filters = ({
       </div>
 
       <div>
-        <h3 className="text-lg font-medium text-gray-900 mb-3">Colors</h3>
+        <h3 className="text-lg font-medium text-white mb-3">Colors</h3>
         <div className="space-y-1">
           {colors.map((color) => (
             <button
               key={color}
               onClick={() => onColorChange(color)}
               className={`flex items-center w-full px-3 py-2 rounded-md transition-colors ${
-                selectedColors.includes(color) ? 'bg-gray-100' : ''
+                selectedColors.includes(color) ? 'bg-black/20 text-white' : 'text-gray-300'
               }`}
             >
               <span className={`h-5 w-5 rounded-full ${colorClasses[color]} mr-3`}></span>

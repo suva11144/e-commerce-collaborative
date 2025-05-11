@@ -3,8 +3,10 @@ import ColorOption from './ColorOption';
 import SizeOption from './SizeOption';
 import Badge from './Badge';
 import { ShoppingCart, Eye } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 const ProductCard = ({ product, onAddToCart }) => {
+  const Navigate = useNavigate();
   const [selectedColor, setSelectedColor] = useState(product.colors[0]);
   const [selectedSize, setSelectedSize] = useState(product.sizes[0]);
   const [isHovered, setIsHovered] = useState(false);
@@ -37,7 +39,10 @@ const ProductCard = ({ product, onAddToCart }) => {
             <ShoppingCart size={16} className="mr-1" />
             Add to cart
           </button>
-          <button className="p-2 bg-gray-100 rounded-md hover:bg-gray-200 transition-colors">
+          <button 
+            className="p-2 bg-gray-100 rounded-md hover:bg-gray-200 transition-colors"
+            onClick={() => Navigate(`/product/${product.id}`)} // Navigate to ProductPage with product ID
+          >
             <Eye size={18} />
           </button>
         </div>
